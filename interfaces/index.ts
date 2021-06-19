@@ -4,7 +4,14 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export type User = {
-  id: number
-  name: string
+export interface User {
+  displayName: string,
+  email: string,
+  photoURL: string,
+  uid: string
+}
+
+export interface Action {
+  payload: any,
+  type: string
 }
