@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { startLogout } from '../redux/auth/actions'
 import Layout from './Layout'
 import { motion } from 'framer-motion'
+import { Selector } from './Selector'
 
 export const HomePage = ({ user }) => {
     const dispatch = useDispatch()
@@ -53,12 +54,9 @@ export const HomePage = ({ user }) => {
                                 <i className="gg-mail" />
                                 <h1 className="px-2 md:block hidden">Menssages</h1>
                             </div>
-                            <div className="cursor-pointer flex font-medium text-sm items-center justify-center my-5 h-7 text-gray-500">
-                                <i className="gg-more-o" />
-                                <h1 className="px-2 md:block hidden">More</h1>
-                            </div>
                             {/*TODO borrarlo*/}
-                            <button className="bg-red-700 p-1" onClick={() => dispatch(startLogout())}>Cerrar sesion</button>
+                            {/*<button className="bg-red-600 p-1 px-3 text-gray-300 rounded-lg bg-opacity-70 hover:bg-opacity-95" onClick={() => dispatch(startLogout())}>Cerrar sesion</button>*/}
+                            <Selector />
                         </div>
                     </div>
                     <div className="bg-gray-900-10 h-full w-full sm:p-5 p-3 pt-10 overflow-auto sm:static fixed top-2/4">
@@ -92,7 +90,7 @@ export const HomePage = ({ user }) => {
                             </div>
                         </div>
                         <div className="my-5 flex p-4 bg-blue-800-5 rounded-md hover:shadow-xl">
-                            <img className="mx-3 ml-0 w-8 h-8 max-w-none object-cover rounded-full" src={user.photoURL} alt="" />
+                            <img className="mx-3 ml-0 w-8 h-8 max-w-none object-cover rounded-full" src="https://www.thesun.co.uk/wp-content/uploads/2021/04/1570372a-afd7-413b-b2ba-952363290742.jpg" alt="" />
                             <div className="flex flex-col">
                                 <div className="flex text-gray-500">
                                     <h1 className="text-gray-50 font-bold sm:text-base text-sm">Piero Rolando</h1>
