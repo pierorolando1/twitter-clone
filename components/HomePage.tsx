@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { startLogout } from '../redux/auth/actions'
 import Layout from './Layout'
 import { motion } from 'framer-motion'
 import { Selector } from './Selector'
+import Swal from 'sweetalert2'
 
 export const HomePage = ({ user }) => {
     const dispatch = useDispatch()
+    const [open, setOpen] = useState(false)
     return (
         <Layout title={`Home | ${user.displayName}`} header={
             <>
@@ -30,7 +32,7 @@ export const HomePage = ({ user }) => {
                         <div className="m-1 bg-green-600 w-3 h-3 rounded-full" />
                     </div>
                     <div className="h-full w-full overflow-auto">
-                        <header className="flex justify-center place-items-center flex-col px-3">
+                        <header className={`flex justify-center place-items-center flex-col px-3 ${open ? '' : 'sm:flex hidden'}`}>
                             <img className="sm:w-16 sm:h-16 w-10 h-10 max-w-none object-cover rounded-full m-0 mt-16" src={user.photoURL} alt="" />
                             <h1 className="text-gray-200 font-medium text-base sm:block hidden">{user.displayName}</h1>
                             <p className="text-sm font-normal text-gray-400 md:block hidden">Sr. Softaware Engineer</p>
@@ -41,7 +43,7 @@ export const HomePage = ({ user }) => {
                                 </div>
                             </button>
                         </header>
-                        <div className="py-5">
+                        <div className={`py-5 ${open ? '' : 'sm:block hidden'}`}>
                             <div className="cursor-pointer flex border-l-4 border-blue-800 font-medium text-sm text-blue-700 items-center justify-center my-5 h-7">
                                 <i className="gg-home-alt" />
                                 <h1 className="px-2 md:block hidden">Newsfeed</h1>
@@ -59,11 +61,11 @@ export const HomePage = ({ user }) => {
                             <Selector />
                         </div>
                     </div>
-                    <div className="bg-gray-900-10 h-full w-full sm:p-5 p-3 pt-10 overflow-auto sm:static fixed top-2/4">
+                    <div className={`bg-gray-900-10 h-full w-full sm:p-5 p-3 pt-10 overflow-auto sm:static fixed ${ open ?"top-2/4" : 'top-0'}` }>
                         <div className="flex sm:hidden">
-                            <div className="bg-gray-800 text-gray-400 flex place-items-center px-3 rounded-2xl mr-2 opacity-80 hover:bg-blue-900 cursor-pointer">
+                            <button onClick={() => setOpen(e => !e)} className="bg-gray-800 text-gray-400 flex place-items-center px-3 rounded-2xl mr-2 opacity-80 hover:bg-blue-900 cursor-pointer">
                                 <i className="text-sm fas fa-align-left" />
-                            </div>
+                            </button>
                             <input type="text" placeholder="Buscar" className="search opacity-80 transition sm:text-base text-sm bg-gray-800 rounded-2xl focus:rounded-sm focus:outline-none focus:border-blue-900 w-full p-2 px-5 text-gray-400 border-transparent focus:border-b-2 focus:bg-gray-900" />
                         </div>
                         <div className="flex flex-col">
@@ -72,7 +74,16 @@ export const HomePage = ({ user }) => {
                                 <h1 className="text-gray-300 font-bold text-sm">{user.displayName}</h1>
                             </div>
                             <div className="flex justify-between flex-wrap">
-                                <input type="text" placeholder="Whats on your mind?" className="transition-all rounded-full bg-gray-800 shadow-xl text-gray-300 placeholder-gray-600 py-2 px-4 text-sm outline-none border-gray-900 border pr-6 sm:w-min w-full focus:border-gray-800 focus:py-10 focus:bg-gray-900 focus:mb-3 focus:w-full focus:rounded-lg" />
+                                <input 
+                                onChange={ () => {} }
+                                onClick={() => {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'Do you want to continue',
+                                        icon: 'error',
+                                        confirmButtonText: 'Cool'
+                                      })
+                                }} type="text" placeholder="Whats on your mind?" value="" className="transition-all rounded-full bg-gray-800 shadow-xl text-gray-800 placeholder-gray-600 py-2 px-4 text-sm outline-none border-gray-900 border pr-6 sm:w-min w-full cursor-pointer" />
                                 <div className="flex sm:p-0 py-3">
                                     <div className="cursor-pointer mx-1 sm:ml-5 bg-gray-800 hover:bg-blue-900 shadow-lg text-center flex items-center rounded-full w-9 h-9 place-content-center">
                                         <i className="text-gray-500 gg-image" />

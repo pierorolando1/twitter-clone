@@ -15,7 +15,7 @@ export const LoginPage = ({ googleOnClick }) => {
                 <div className="w-full h-full overflow-hidden flex justify-center items-center bg-gray-900 bg-opacity-90" style={{ backdropFilter: 'blur(10px)' }}>
                     <div className="w-full my-2 md:w-3/5 lg:w-2/5">
                         <div className="flex justify-center items-center mt-10 mb-20">
-                            <i className="gg-profile text-gray-600" />
+                            <h1 className="text-5xl text-gray-100 font-black uppercase text-center">Tuite-ruvian</h1>
                         </div>
                         <div className="flex my-8 mx-4 md:mx-2 border-b-2 border-gray-600 hover:border-blue-800">
                             <label className="self-center">
