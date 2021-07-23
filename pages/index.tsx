@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { firebase, mapUserFromFirebaseAuthToUser } from '../firebase'
+import { firebase, mapUserFromFirebaseAuthToUser, db } from '../firebase'
 import { useDispatch, useSelector } from 'react-redux'
 import { HomePage } from '../components/HomePage'
 import { Redirect } from '../components/Redirect'
-import { login, logout, startGoogleLogin } from '../redux/auth/actions'
+import { login, startLogout, startGoogleLogin } from '../redux/auth/actions'
 import { Loading } from '../components/Loading'
 
 const IndexPage = () => {
@@ -12,11 +12,10 @@ const IndexPage = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      console.log(typeof user)
       console.log('INDEX', user)
       user !== null ?
         dispatch(login(mapUserFromFirebaseAuthToUser(user)))
-        : dispatch(logout())
+        : dispatch(startLogout())
     })
   }, [])
 

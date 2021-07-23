@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/firestore'
 import { User } from '../interfaces';
 
 const firebaseConfig = {
@@ -13,6 +14,9 @@ const firebaseConfig = {
 
 !firebase.apps.length && firebase.initializeApp(firebaseConfig)
 
+const db = firebase.firestore();
+
+
 export const mapUserFromFirebaseAuthToUser = (user: User) => {
     const { displayName, email, photoURL, uid } = user
 
@@ -25,5 +29,6 @@ export const mapUserFromFirebaseAuthToUser = (user: User) => {
 }
 
 export {
-    firebase
+    firebase,
+    db,
 }
